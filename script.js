@@ -31,22 +31,22 @@ $(function () {
     buffInterval = null,
     tFlag = false,
     albums = [ 
-      "Killer w/ Karina",
+      "Killer w/Karina",
       "Ending Credit",
       "Dreaming",
-      "Nerdy Love w/ Mimi",
+      "Nerdy Love w/Mimi",
       "You, Clouds, Rain",
       "This Wish",
       "Nobody Gets Me",
       "Tangled Up In Me",
-      "Born This Way w/ Lee Young Ji",
+      "Born This Way w/lyj",
       "A Thousand Miles",
       "Ride",
       "Good Things",
       "I LOVE YOU 3000",
       "Event Horizon",
       "Nappa",
-      "Gravity w/ Liz",
+      "Gravity w/Liz",
       "Issues"
     ],
     trackNames = [ 
@@ -68,7 +68,7 @@ $(function () {
       "태연",
       "Julia Michaels"
     ],
-    albumArtworks = ["_1", "_2", "_3", "_4", "_5","_6","_7","_8","_9","_10","_11","_12","_13","_14","_15","_16","_17","_18","_19","_20","_21","_22","_23","_24"],
+    albumArtworks = ["_1", "_2", "_3", "_4", "_5","_6","_7","_8","_9","_10","_11","_12","_13","_14","_15","_16","_17"],
     trackUrl = [
       "https://od.lk/s/MjdfNTk3MTYyOThf/Killer%20%28with%20Karina%29.wav",
       "https://od.lk/s/MjdfNTk3MTYzMTZf/Ending%20Credit.WAV",
@@ -80,7 +80,7 @@ $(function () {
       "https://od.lk/s/MjdfNTk3MTYzMDlf/Tangled%20Up%20In%20Me.wav",
       "https://od.lk/s/MjdfNTk3MTYzMjZf/Born%20This%20Way%20%28Youngji%29.WAV",
       "https://od.lk/s/MjdfNTk3MTYzMTRf/A%20Thousand%20Miles.WAV",
-      "https://od.lk/s/MjdfNTk3MTYzMDhf/Ride.WAV",
+      "https://od.lk/s/MjdfNTk3MTc0MzBf/ride.WAV",
       "https://od.lk/s/MjdfNTk3MTYzMjJf/Good%20Things.WAV",
       "https://od.lk/s/MjdfNTk3MTYzMjVf/I%20LOVE%20YOU%203000.WAV",
       "https://od.lk/s/MjdfNTk3MTYzMjFf/Event%20Horizon.WAV",
@@ -208,51 +208,57 @@ $(function () {
   }
 
   function selectTrack(flag) {
-    if (flag == 0 || flag == 1) ++currIndex;
-    else --currIndex;
-
-    if (currIndex > -1 && currIndex < albumArtworks.length) {
-      if (flag == 0) i.attr("class", "fa fa-play");
-      else {
-        albumArt.removeClass("buffering");
-        i.attr("class", "fa fa-pause");
-      }
-
-      seekBar.width(0);
-      trackTime.removeClass("active");
-      tProgress.text("00:00");
-      tTime.text("00:00");
-
-      currAlbum = albums[currIndex];
-      currTrackName = trackNames[currIndex];
-      currArtwork = albumArtworks[currIndex];
-
-      audio.src = trackUrl[currIndex];
-
-      nTime = 0;
-      bTime = new Date();
-      bTime = bTime.getTime();
-
-      if (flag != 0) {
-        audio.play();
-        playerTrack.addClass("active");
-        albumArt.addClass("active");
-
-        clearInterval(buffInterval);
-        checkBuffering();
-      }
-
-      albumName.text(currAlbum);
-      trackName.text(currTrackName);
-      albumArt.find("img.active").removeClass("active");
-      $("#" + currArtwork).addClass("active");
-
-      bgArtworkUrl = $("#" + currArtwork).attr("src");
-
-      bgArtwork.css({ "background-image": "url(" + bgArtworkUrl + ")" });
+    // Update currIndex based on the flag (1 for next, -1 for previous)
+    if (flag === 0 || flag === 1) {
+      currIndex++;
     } else {
-      if (flag == 0 || flag == 1) --currIndex;
-      else ++currIndex;
+      currIndex--;
+    }
+  
+    // Ensure currIndex is within bounds of the albums array
+    if (currIndex < 0) {
+      currIndex = albums.length - 1; // Loop back to the last track if currIndex is negative
+    } else if (currIndex >= albums.length) {
+      currIndex = 0; // Loop back to the first track if currIndex exceeds the length
+    }
+  
+    // Set current track details
+    currAlbum = albums[currIndex];
+    currTrackName = trackNames[currIndex];
+    currArtwork = albumArtworks[currIndex];
+  
+    // Set audio source to the selected track
+    audio.src = trackUrl[currIndex];
+  
+    // Reset progress bar and track time
+    seekBar.width(0);
+    trackTime.removeClass("active");
+    tProgress.text("00:00");
+    tTime.text("00:00");
+  
+    // Initialize time variables
+    nTime = 0;
+    bTime = new Date();
+    bTime = bTime.getTime();
+  
+    // Update album and track info on the UI
+    albumName.text(currAlbum);
+    trackName.text(currTrackName);
+    albumArt.find("img.active").removeClass("active");
+    $("#" + currArtwork).addClass("active");
+  
+    // Update background artwork
+    bgArtworkUrl = $("#" + currArtwork).attr("src");
+    bgArtwork.css({ "background-image": "url(" + bgArtworkUrl + ")" });
+  
+    // Start playback if flag is not 0 (i.e., if not paused)
+    if (flag !== 0) {
+      audio.play();
+      playerTrack.addClass("active");
+      albumArt.addClass("active");
+  
+      clearInterval(buffInterval);
+      checkBuffering();
     }
   }
 
@@ -276,7 +282,15 @@ $(function () {
     $(audio).on("timeupdate", updateCurrTime);
 
     $(audio).on("ended", function() {
-      selectTrack(1);  // Move to the next track
+      // Check if we are at the last track
+      if (currIndex === albums.length - 1) {
+        currIndex = 0; // Loop back to the first track
+      } else {
+        selectTrack(1); // Move to the next track
+      }
+    
+      // Ensure the track starts playing automatically
+      audio.play();
     });
 
     playPreviousTrackButton.on("click", function () {
