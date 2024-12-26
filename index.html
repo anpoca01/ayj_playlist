@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>music player (working) Updated 11/9/23</title>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="playlist-header">
+  ANYUJIN's PLAYLIST
+</div>
+
+<div id="app-cover">
+  <div id="bg-artwork"></div>
+  <div id="bg-layer"></div>
+  <div id="player">
+    <div id="player-track">
+      <div id="album-name"></div>
+      <div id="track-name"></div>
+      <div id="track-time">
+        <div id="current-time"></div>
+        <div id="track-length"></div>
+      </div>
+      <div id="s-area">
+        <div id="ins-time"></div>
+        <div id="s-hover"></div>
+        <div id="seek-bar"></div>
+      </div>
+    </div>
+    <div id="player-content">
+      <div id="album-art"> 
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_1" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_2" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_3" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_4" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_5" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_6" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_7" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_8" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_9" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_10" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_11" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_12" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_13" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_14" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_15" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_16" />
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjg1OXwwfDF8c2VhY2h8Mnx8cHVwcHklMjBwaG90b3xlbnwwfHx8fDE2ODgyOTkzMjg&ixlib=rb-1.2.1&q=80&w=400" id="_17" />
+        <div id="buffer-box">잠깐만요...</div>
+      </div>
+      <div id="player-controls">
+        <div class="control">
+          <div class="button" id="play-previous">
+            <i class="fas fa-backward"></i>
+          </div>
+        </div>
+        <div class="control">
+          <div class="button" id="play-pause-button">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="control">
+          <div class="button" id="play-next">
+            <i class="fas fa-forward"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+
+<div id="username">
+  @anpoca01
+</div>
+
+</html>
